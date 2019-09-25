@@ -89,7 +89,7 @@ folioReader.openBook(R.raw.accessible_epub_3);
 
 ## INFO
 
-* This is forked version of [LICENSE](https://github.com/FolioReader/FolioReader-Android)
+* This is forked version of [FolioReader-Android](https://github.com/FolioReader/FolioReader-Android)
 * Made with Custom UI and fonts
 * Fixed issue with fonts not being changed
 * Multidex is not required for SDK > 21
