@@ -132,8 +132,17 @@ public class FolioReader {
         return singleton;
     }
 
-    public FolioReader openBook(int rawId) {
+
+    public FolioReader openBook(String assetOrSdcardPath,int flag) {
+        Intent intent = getIntentFromUrl(assetOrSdcardPath, 0);
+        intent.putExtra("FLAG", flag);
+        context.startActivity(intent);
+        return singleton;
+    }
+
+    public FolioReader openBook(int rawId,int flag) {
         Intent intent = getIntentFromUrl(null, rawId);
+        intent.putExtra("FLAG", flag);
         context.startActivity(intent);
         return singleton;
     }
@@ -144,6 +153,9 @@ public class FolioReader {
         context.startActivity(intent);
         return singleton;
     }
+
+
+
 
     public FolioReader openBook(int rawId, String bookId) {
         Intent intent = getIntentFromUrl(null, rawId);

@@ -7,6 +7,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.content.pm.ActivityInfo
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.graphics.Rect
@@ -234,10 +235,16 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
         )
 
 
-
+        var t = text
 
         tv.layoutParams = lp
-        tv.setText(text)
+
+
+
+         if (text.indexOf('.')!=-1)
+                t = t.substring(0,t.indexOf('.'))
+
+        tv.setText(t)
          tv.setTypeface(Cav)
         tv.textSize = 20f
         tv.typeface = Cav
@@ -286,9 +293,18 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
         if (savedInstanceState != null) {
             searchAdapterDataBundle = savedInstanceState.getBundle(SearchAdapter.DATA_BUNDLE)
             searchQuery = savedInstanceState.getCharSequence(SearchActivity.BUNDLE_SAVE_SEARCH_QUERY)
+
+
+
         }
 
+
+
+
         mBookId = intent.getStringExtra(FolioReader.EXTRA_BOOK_ID)
+
+        if (intent.getIntExtra("FLAG",0)==1) setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE)
+
         mEpubSourceType = intent.extras!!.getSerializable(FolioActivity.INTENT_EPUB_SOURCE_TYPE) as EpubSourceType
         if (mEpubSourceType == EpubSourceType.RAW) {
             mEpubRawId = intent.extras!!.getInt(FolioActivity.INTENT_EPUB_SOURCE_PATH)
